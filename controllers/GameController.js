@@ -71,10 +71,10 @@ const CreateGame = async (req, res) => {
 
 const DeleteGame = async (req, res) => {
     try {
-        const game = await Game.findById(req.params._id)
+        const game = await Game.findById(req.params.game_id)
         await Category.deleteMany({ _id: { $in: game.categories } })
         await Question.deleteMany({ _id: { $in: game.questions } })
-        await Game.findByIdAndDelete(req.params._id)
+        await Game.findByIdAndDelete(req.params.game_id)
         res.send({ msg: `${game.title} deleted` })
     } catch (err) {
         throw err
@@ -84,7 +84,7 @@ const DeleteGame = async (req, res) => {
 const UpdateGame = async (req, res, err) => {
     try {
         const updatedGame = await Game.findByIdAndUpdate(
-            req.params._id,
+            req.params.game_id,
             { ...req.body },
             { new: true, useFindAndModify: false },
             (err, (d) => (err ? err : res.send(d)))
