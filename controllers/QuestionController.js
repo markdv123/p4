@@ -11,7 +11,8 @@ const GetQuestionsByCategory = async (req, res) => {
 
 const CreateQuestion = (req, res) => {
     try {
-        const question = new Question({ ...req.body, category_id: req.params.category_id })
+        const cat = await Category.findById(req.params.category_id)
+        const question = new Question({ ...req.body, category_id: req.params.category_id, game_id: cat.game_id})
         question.save()
         await Category.update(
             { _id: req.params.category_id },
@@ -22,7 +23,7 @@ const CreateQuestion = (req, res) => {
             }
         )
         await Game.update(
-            { _id: req.params.game_id },
+            { _id: cat.game_id },
             {
                 $push: {
                     questions: question
@@ -37,9 +38,10 @@ const CreateQuestion = (req, res) => {
 
 const DeleteQuestion = async (req, res) => {
     try {
+        const question = await Question.findById(req.params.question_id)
         await Question.deleteOne({ _id: req.params.question_id })
         await Category.findOneAndUpdate(
-            { _id: req.params.category_id },
+            { _id: question.category_id },
             { $pull: { questions: req.params.question_id } },
             { upsert: true, new: true },
             (err, updatedCat) => {
@@ -48,7 +50,7 @@ const DeleteQuestion = async (req, res) => {
             }
         )
         await Game.findOneAndUpdate(
-            { _id: req.params.game_id },
+            { _id: question.game_id },
             { $pull: { questions: req.params.question_id } },
             { upsert: true, new: true },
             (err, updatedGame) => {
