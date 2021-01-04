@@ -43,17 +43,15 @@ const UpdateCategory = async (req, res) => {
 const DeleteCategory = async (req, res) => {
     try {
         const cat = await Category.findById(req.params.category_id)
+        const game = await Game.findById(cat.game_id)
         await Category.deleteOne({ _id: req.params.category_id })
         await Question.deleteMany({ category_id: req.params.category_id })
-        await Game.findOneAndUpdate(
+        const updatedGame = await Game.findOneAndUpdate(
             { _id: cat.game_id },
-            { $pull: { categories: req.params.category_id } },
+            { $pull: { categories: req.params.category_id }, $pullAll: { questions: {category_id: { $in: game.questions}}} },
             { upsert: true, new: true },
-            (err, updatedGame) => {
-                if (err) { console.log(err) }
-                res.send(updatedGame)
-            }
         )
+        res.send({updatedGame})
     } catch (err) {
         throw err
     }

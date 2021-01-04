@@ -8,8 +8,8 @@ const {
 const GetProfile = async (req, res) => {
     try {
         const user = await User.find({ username: req.params.username })
-        const posts = await Game.find({ user_id: req.params.user_id })
-        res.send({ user, posts })
+        const games = await Game.find({ user_id: req.params.user_id })
+        res.send({ user, games })
     } catch (error) {
         throw error
     }

@@ -4,11 +4,11 @@ const GetGames = async (req, res) => {
     try {
         const { page, limit } = req.query
         const offset = page === '1' ? 0 : Math.floor(parseInt(page) * parseInt(limit))
-        const posts = await Game.find()
+        const games = await Game.find()
             .limit(parseInt(limit))
             .skip(offset)
             .sort({ popularity_rating: 'desc' })
-        res.send({ results: posts.length, posts })
+        res.send({ results: games.length, games })
     } catch (err) {
         throw err
     }
@@ -18,11 +18,11 @@ const GetGamesByUser = async (req, res) => {
     try {
         const { page, limit } = req.query
         const offset = page === '1' ? 0 : Math.floor(parseInt(page) * parseInt(limit))
-        const posts = await Game.find({ user_id: req.params.user_id })
+        const games = await Game.find({ user_id: req.params.user_id })
             .limit(parseInt(limit))
             .skip(offset)
             .sort({ popularity_rating: 'desc' })
-        res.send({ results: posts.length, posts })
+        res.send({ results: games.length, games })
     } catch (err) {
         throw err
     }
@@ -30,7 +30,7 @@ const GetGamesByUser = async (req, res) => {
 
 const GetGameById = async (req, res) => {
     try {
-        const post = await Game.findById(req.params.post_id).populate([
+        const game = await Game.findById(req.params.game_id).populate([
             {
                 model: 'users',
                 path: 'user_id',
@@ -53,7 +53,7 @@ const GetGameById = async (req, res) => {
                 }
             }
         ])
-        res.send(post)
+        res.send(game)
     } catch (err) {
         throw err
     }
@@ -61,9 +61,9 @@ const GetGameById = async (req, res) => {
 
 const CreateGame = async (req, res) => {
     try {
-        const newGame = new Game({ ...req.body, user_id: req.params.user_id })
-        newGame.save()
-        res.send(newGame)
+        const game = new Game({ ...req.body, user_id: req.params.user_id })
+        game.save()
+        res.send(game)
     } catch (err) {
         throw err
     }
