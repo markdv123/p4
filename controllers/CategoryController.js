@@ -42,10 +42,11 @@ const UpdateCategory = async (req, res) => {
 
 const DeleteCategory = async (req, res) => {
     try {
+        const cat = await Category.findById(req.params.category_id)
         await Category.deleteOne({ _id: req.params.category_id })
         await Question.deleteMany({ category_id: req.params.category_id })
         await Game.findOneAndUpdate(
-            { _id: req.params.post_id },
+            { _id: cat.game_id },
             { $pull: { categories: req.params.category_id } },
             { upsert: true, new: true },
             (err, updatedGame) => {
