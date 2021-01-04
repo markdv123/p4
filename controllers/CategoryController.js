@@ -48,7 +48,7 @@ const DeleteCategory = async (req, res) => {
         await Question.deleteMany({ category_id: req.params.category_id })
         const updatedGame = await Game.findOneAndUpdate(
             { _id: cat.game_id },
-            { $pull: { categories: req.params.category_id }, $pullAll: { questions: {category_id: { $in: game.questions}}} },
+            { $pull: { categories: req.params.category_id }},
             { upsert: true, new: true },
         )
         res.send({updatedGame})
