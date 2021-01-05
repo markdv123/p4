@@ -2,7 +2,7 @@ const { Question, Game, Category } = require('../db/schema')
 
 const GetQuestionsByCategory = async (req, res) => {
     try {
-        const questions = await Comment.find({ category_id: req.params.category_id })
+        const questions = await Question.find({ category_id: req.params.category_id })
         res.send(questions)
     } catch (error) {
         throw error

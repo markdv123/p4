@@ -111,9 +111,9 @@ function App(props) {
                   authenticated={authenticated} />
               )}
             />
-            <ProtectedRoute
+            <Route
               authenticated={authenticated}
-              path="/play"
+              path="/play/:game_id"
               component={() => (
                 <GamePage
                   {...props}
