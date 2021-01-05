@@ -17,10 +17,6 @@ module.exports = new Schema(
         category_id: {
             type: Schema.Types.ObjectId,
             ref: 'categories'
-        },
-        game_id: {
-            type: Schema.Types.ObjectId,
-            ref: 'games'
         }
     },
     { timestamps: true }

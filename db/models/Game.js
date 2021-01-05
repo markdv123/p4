@@ -18,12 +18,6 @@ module.exports = new Schema(
                 type: Schema.Types.ObjectId,
                 ref: 'categories'
             }
-        ],
-        questions: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'questions'
-            }
         ]
     },
     { timestamps: true }
