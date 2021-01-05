@@ -9,7 +9,7 @@ import Profile from './pages/Profile'
 import CreateGame from './pages/CreateGame'
 import GamePage from './pages/GamePage'
 import UpdateGame from './pages/UpdateGame'
-import { __CheckSession } from './services/UserService'
+import { __CheckSession } from './services/UserServices'
 
 function App(props) {
   const [pageLoading, updatePageLoading] = useState(true)

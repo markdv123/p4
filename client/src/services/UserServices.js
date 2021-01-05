@@ -28,9 +28,9 @@ export const __CheckSession = async () => {
   }
 }
 
-export const __LoginUser = async (userData) => {
+export const __LoginUser = async (email, password) => {
   try {
-    const res = await ApiClient.post('/users/login', userData)
+    const res = await ApiClient.post('/users/login', {email, password})
     localStorage.setItem('token', res.data.token)
     return res.data
   } catch (error) {

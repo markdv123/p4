@@ -3,6 +3,7 @@ import Nav from '../components/Nav'
 import Search from '../components/Search'
 import GetStarted from '../components/GetStarted'
 import Footer from '../components/Footer'
+import {Grid} from '@material-ui/core'
 
 const Home = (props) => {
     return (
@@ -13,7 +14,7 @@ const Home = (props) => {
                 currentUser={props.currentUser}
             />
             <div style={{textAlign: 'center'}}>
-                <Grid container justify="center">
+                <Grid container justify="center" style={{paddingTop: "90px"}}>
                     <Grid item xs={6}>
                         <GetStarted />
                     </Grid>
@@ -22,7 +23,9 @@ const Home = (props) => {
                     </Grid>
                 </Grid>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }
+
+export default Home
