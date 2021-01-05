@@ -9,9 +9,9 @@ export const __GetProfile = async (username) => {
   }
 }
 
-export const __RegisterUser = async (formData) => {
+export const __RegisterUser = async (name, username, email, password) => {
   try {
-    const res = await ApiClient.post('/users/register', formData)
+    const res = await ApiClient.post('/users/register', {name, username, email, password})
     return res.data
   } catch (error) {
     throw error

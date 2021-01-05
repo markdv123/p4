@@ -9,8 +9,8 @@ const Home = (props) => {
     return (
         <div>
             <Nav
-                authenticated={props.authenticated}
                 {...props}
+                authenticated={props.authenticated}
                 currentUser={props.currentUser}
             />
             <div style={{textAlign: 'center'}}>
