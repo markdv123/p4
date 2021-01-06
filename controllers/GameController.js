@@ -37,19 +37,11 @@ const GetGameById = async (req, res) => {
                 select: '_id name'
             },
             {
+                model: 'categories',
                 path: 'categories',
                 populate: {
-                    path: 'game_id',
-                    model: 'games',
-                    select: '_id name'
-                }
-            },
-            {
-                path: 'questions',
-                populate: {
-                    path: 'category_id',
-                    model: 'categories',
-                    select: '_id name'
+                    model: 'questions',
+                    path: 'questions'
                 }
             }
         ])
