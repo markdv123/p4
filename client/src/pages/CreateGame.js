@@ -33,6 +33,10 @@ function getStepContent(stepIndex) {
 const CreatGame = (props) => {
     const [activeStep, setActiveStep] = React.useState(0)
     const steps = getSteps()
+    const [catNum, setCatNum] = useState(0)
+    const [qNum, setQNum] = useState(0)
+    const [gameId, setGameId] = useState('')
+    const [catId, setCatId] = useState('')
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -46,16 +50,32 @@ const CreatGame = (props) => {
         setActiveStep(0)
     }
 
+    const categoryNum = (num) => {
+        setCatNum(num)
+    }
+
+    const questionNum = (num) => {
+        setQNum(num)
+    }
+
+    const gId = (id) => {
+        setGameId(id)
+    }
+
+    const cId = (id) => {
+        setCatId(id)
+    }
+
     let content = ''
     switch (activeStep) {
         case 0:
-            content = <SetGame/>
+            content = <SetGame {...props} categoryNum={categoryNum} questionNum={questionNum} gId={gId}/>
             break
         case 1:
-            content = <SetCats/>
+            content = <SetCats {...props} catNum={catNum} gameId={gameId} cId={cId}/>
             break
         case 2:
-            content = <SetQs/>
+            content = <SetQs {...props} qNum={qNum} catId={catId}/>
     }
     return (
         <div>
