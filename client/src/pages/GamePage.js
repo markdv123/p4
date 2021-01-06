@@ -13,7 +13,7 @@ const GamePage = (props) => {
 
     useEffect(() => {
         getGame()
-        getQuestions()
+        getQuestions(cats)
     }, [])
 
     const getGame = async () => {
@@ -23,23 +23,35 @@ const GamePage = (props) => {
             setGame(res)
             const resp = await __GetCategoriesByGame(gameId)
             setCat(resp)
+            console.log(26, cats)
+            // getQuestions()
         } catch (error) {
             throw error
         }
     }
 
-    const getQuestions = () => {
+    const getQuestions = (cats) => {
         console.log('please')
         const arr = []
-        cats.forEach(async (cat) => {
-            try {
-                const res = await __GetQuestionsByCategory(cat._id)
-                arr.push(res)
-            } catch (error) {
-                throw error
-            }
+        console.log(cats)
+        cats.forEach(cat => {
+            const res = getQsByCat(cat._id)
+            console.log(39, cat._id)
+            console.log(40, res)
+            arr.push(res)
         })
+        console.log(43, arr)
         setQs(arr)
+    }
+    console.log(46, cats)
+    const getQsByCat = async (catId) => {
+        try {
+            const res = await __GetQuestionsByCategory(catId)
+            console.log(50, res)
+            return res
+        } catch (error) {
+            throw error
+        }
     }
 
     return (
@@ -53,18 +65,18 @@ const GamePage = (props) => {
             <Grid container justify="center" style={{ marginTop: "100px" }}>
                 {cats.length ? (
                     cats.map((cat, i) => (
-                        <div style={{display: 'flex'}, {flexDirection: "column"}}>
-                        <div style={{ display: 'flex' }, {flexDirection: "column"}}>
-                            <div id={i} key={i}>
-                                {cat.name}
-                            </div>
-                            {qs.length ? (
-                                qs[i].map((q, i) => (
-                                    <div key={i}>
-                                        {q.points}
-                                    </div>
-                                ))) : null}
-                        </ div>
+                        <div style={{ display: 'flex' }, { flexDirection: "column" }} key={i}>
+                            <div style={{ display: 'flex' }, { flexDirection: "column" }} key={i}>
+                                <div id={i} key={i}>
+                                    {cat.name}
+                                </div>
+                                {qs.length ? (
+                                    qs[i].map((q, i) => (
+                                        <div key={i}>
+                                            {q.points}
+                                        </div>
+                                    ))) : null}
+                            </ div>
                         </ div>
                     ))
                 ) : null}
