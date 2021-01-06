@@ -31,24 +31,23 @@ const GamePage = (props) => {
                 currentUser={props.currentUser}
             />
             {game.title ? (<h1 style={{ textAlign: 'center' }, { marginTop: "100px" }}>{game.title}</h1>) : null}
-            <Grid container justify="center" style={{ marginTop: "100px" }}>
-                {/* {cats.length ? (
-                    cats.map((cat, i) => (
-                        <div style={{ display: 'flex' }, { flexDirection: "column" }} key={i}>
-                            <div style={{ display: 'flex' }, { flexDirection: "column" }} key={i}>
+            <Grid container justify="center">
+                {game.categories ? (
+                    game.categories.map((cat, i) => (
+                        <div style={{ display: 'flex' }, { flexDirection: "column" }, {fontSize: '60px'}} key={i}>
+                            <div style={{ display: 'flex' }, { flexDirection: "column" }, {margin: "10px"}} key={i}>
                                 <div id={i} key={i}>
                                     {cat.name}
                                 </div>
-                                {qs.length ? (
-                                    qs[i].map((q, i) => (
+                                {cat.questions.map((q, i) => (
                                         <div key={i}>
                                             {q.points}
                                         </div>
-                                    ))) : null}
+                                    ))}
                             </ div>
                         </ div>
                     ))
-                ) : null} */}
+                ) : null}
             </Grid>
         </div>
     )
