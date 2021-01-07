@@ -12,6 +12,7 @@ import {
 import SetGame from '../components/SetGame'
 import SetCats from '../components/SetCats'
 import SetQs from '../components/SetQs'
+import {withRouter} from 'react-router-dom'
 
 function getSteps() {
     return ['Create Game', 'Create Categories', 'Create Questions']
@@ -34,14 +35,18 @@ const CreatGame = (props) => {
     const [activeStep, setActiveStep] = React.useState(0)
     const steps = getSteps()
     const [gameId, setGameId] = useState('')
-    const [catId, setCatId] = useState('')
 
-    const handleNext = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    const handleNext = () => {
+        if(activeStep < 2) {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1)
+        } else {
+            props.history.push(`/play/${gameId}`)
+        }
+    }
     const handleBack = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
     const handleReset = () => setActiveStep(0)
 
     const gId = (id) => setGameId(id)
-    const cId = (id) => setCatId(id)
 
     let content = ''
     switch (activeStep) {
@@ -49,10 +54,10 @@ const CreatGame = (props) => {
             content = <SetGame {...props} gId={gId}/>
             break
         case 1:
-            content = <SetCats {...props} gameId={gameId} cId={cId}/>
+            content = <SetCats {...props} gameId={gameId}/>
             break
         case 2:
-            content = <SetQs {...props} catId={catId}/>
+            content = <SetQs {...props} gameId={gameId}/>
     }
     return (
         <div>
@@ -100,4 +105,4 @@ const CreatGame = (props) => {
     )
 }
 
-export default CreatGame
+export default withRouter(CreatGame)
