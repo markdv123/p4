@@ -63,7 +63,7 @@ const SetGame = (props) => {
             <Grid container justify="center" alignItems="center">
             <Button
                variant="contained"
-               color="primary"
+               color="secondary"
                endIcon={<Icon>arrow_forward_ios</Icon>}
                onClick={handleSubmit}
                style={{ margin: '5px' }}

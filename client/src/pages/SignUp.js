@@ -51,7 +51,7 @@ function SignUp(props) {
     return (
         <div>
             <Nav />
-            <Grid container justify="center" style={{ margin: '20px' }, {marginTop: "100px"}}>
+            <Grid container justify="center" style={{ margin: '20px', marginTop: "100px"}}>
                 <FormControl className="flex-col" onSubmit={handleSubmit}>
                     <TextField
                         placeholder="Your Name"
@@ -90,7 +90,7 @@ function SignUp(props) {
                     />
                     <br />
                     {passwordsMatch ? <p></p> : <p>Passwords must match</p>}
-                    <Button onClick={handleSubmit} variant="contained" style={{ backgroundColor: '#9a9a9a', color: 'white' }} endIcon={<Icon>person_add</Icon>}>
+                    <Button onClick={handleSubmit} variant="contained" color='secondary' endIcon={<Icon>person_add</Icon>}>
                         Sign Up
                     </Button>
 

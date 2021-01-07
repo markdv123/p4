@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { __GetGameById } from '../services/GameServices'
-import { __GetCategoriesByGame } from '../services/CategoryServices'
-import { __GetQuestionsByCategory } from '../services/QuestionServices'
 import { withRouter } from 'react-router-dom'
 import Nav from '../components/Nav'
-import { Grid } from '@material-ui/core'
+import {
+    Grid,
+    Paper,
+    Slide,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Button
+} from '@material-ui/core'
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />
+})
 
 const GamePage = (props) => {
     const [game, setGame] = useState({})
-
-    useEffect(() => {
-        getGame()
-    }, [])
+    const [question, setQuestion] = useState({})
+    const [open, setOpen] = useState(false)
+    const [dialogMode, setDialogMode] = useState(1)
 
     const getGame = async () => {
         try {
@@ -22,7 +33,25 @@ const GamePage = (props) => {
             throw error
         }
     }
+
+    useEffect(() => {
+        getGame()
+    }, [props.match.params.game_id])
     console.log(game)
+    const handleQ = (question) => {
+        setQuestion(question)
+        setOpen(true)
+    }
+
+    const handleA = () => {
+        setDialogMode(2)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+        setDialogMode(1)
+    }
+
     return (
         <div>
             <Nav
@@ -30,25 +59,78 @@ const GamePage = (props) => {
                 authenticated={props.authenticated}
                 currentUser={props.currentUser}
             />
-            {game.title ? (<h1 style={{ textAlign: 'center' }, { marginTop: "100px" }}>{game.title}</h1>) : null}
+            {game.title ? (
+                <div style={{ textAlign: 'center', marginTop: "100px", color: 'rgb(36, 84, 89)' }}>
+                    <h1 style={{ fontSize: '50px' }}>{game.title}</h1>
+                    <h3>{game.description}</h3>
+                </div>
+            ) : null}
             <Grid container justify="center">
                 {game.categories ? (
                     game.categories.map((cat, i) => (
-                        <div style={{ display: 'flex' }, { flexDirection: "column" }, {fontSize: '60px'}} key={i}>
-                            <div style={{ display: 'flex' }, { flexDirection: "column" }, {margin: "10px"}} key={i}>
-                                <div id={i} key={i}>
-                                    {cat.name}
+                        <div style={{ display: 'flex', flexDirection: "column", fontSize: '60px' }} key={i}>
+                            <div style={{ display: 'flex', flexDirection: "column", margin: "10px", maxWidth: '200px' }} key={i}>
+                                <div key={i} style={{ marginBottom: "10px" }}>
+                                    <Paper style={{ width: "150px", color: 'white' }}>
+                                        {cat.name}
+                                    </Paper>
                                 </div>
                                 {cat.questions.map((q, i) => (
-                                        <div key={i}>
+                                    <div key={i} style={{ margin: "5px" }}>
+                                        <Paper style={{ width: '150px', color: 'white' }} onClick={() => handleQ(q)}>
                                             {q.points}
-                                        </div>
-                                    ))}
+                                        </Paper>
+                                    </div>
+                                ))}
                             </ div>
                         </ div>
                     ))
                 ) : null}
             </Grid>
+            <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-slide-title"
+                aria-describedby="alert-dialog-slide-description"
+            >
+                {question.question && dialogMode === 1 ? (
+                    <div>
+                        <DialogTitle id="alert-dialog-slide-title">{`For ${question.points} Points`}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-slide-description">
+                                {question.question}
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleA} color="white">
+                                Answer
+                            </Button>
+                            <Button onClick={handleClose} color="white">
+                                Close
+                            </Button>
+                        </DialogActions>
+                    </div>
+                ) : null}
+                {question.question && dialogMode === 2 ? (
+                    <div>
+                        <DialogTitle id="alert-dialog-slide-title">{`For ${question.points} Points`}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-slide-description" style={{color: 'white'}}>
+                                {question.question}
+                                <br />
+                                {question.answer}
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleClose} color="white">
+                                Close
+                            </Button>
+                        </DialogActions>
+                    </div>
+                ) : null}
+            </Dialog>
         </div>
     )
 }

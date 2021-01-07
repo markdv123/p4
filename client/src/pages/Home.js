@@ -1,8 +1,5 @@
 import React from 'react'
 import Nav from '../components/Nav'
-import Search from '../components/Search'
-import GetStarted from '../components/GetStarted'
-import Footer from '../components/Footer'
 import {Grid} from '@material-ui/core'
 
 const Home = (props) => {
@@ -15,15 +12,9 @@ const Home = (props) => {
             />
             <div style={{textAlign: 'center'}}>
                 <Grid container justify="center" style={{paddingTop: "90px"}}>
-                    <Grid item xs={6}>
-                        <GetStarted />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Search />
-                    </Grid>
+                    <h1>Get Started Stuff</h1>
                 </Grid>
             </div>
-            {/* <Footer /> */}
         </div>
     )
 }

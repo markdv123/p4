@@ -10,6 +10,8 @@ import CreateGame from './pages/CreateGame'
 import GamePage from './pages/GamePage'
 import UpdateGame from './pages/UpdateGame'
 import { __CheckSession } from './services/UserServices'
+import { ThemeProvider } from '@material-ui/core/styles'
+import theme from './styles/Theme'
 
 function App(props) {
   const [pageLoading, updatePageLoading] = useState(true)
@@ -43,88 +45,90 @@ function App(props) {
   }
 
   return (
-    <div className="App">
-      {pageLoading ? (
-        <h3>Loading...</h3>
-      ) : (
-          <Switch>
-            <Route
-              exact path="/"
-              component={() => (
-                <Home
-                  currentUser={currentUser}
-                  authenticated={authenticated}
-                  toggleAuthenticated={toggleAuthenticated}
-                />
-              )}
-            />
-            <Route
-              path="/register"
-              component={(props) => (
-                <SignUp
-                  {...props}
-                  toggleAuthenticated={toggleAuthenticated}
-                  currentUser={currentUser}
-                  authenticated={authenticated} />
-              )}
-            />
-            <Route
-              path="/login"
-              component={() => (
-                <SignIn
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        {pageLoading ? (
+          <h3>Loading...</h3>
+        ) : (
+            <Switch>
+              <Route
+                exact path="/"
+                component={() => (
+                  <Home
+                    currentUser={currentUser}
+                    authenticated={authenticated}
+                    toggleAuthenticated={toggleAuthenticated}
+                  />
+                )}
+              />
+              <Route
+                path="/register"
+                component={(props) => (
+                  <SignUp
+                    {...props}
+                    toggleAuthenticated={toggleAuthenticated}
+                    currentUser={currentUser}
+                    authenticated={authenticated} />
+                )}
+              />
+              <Route
+                path="/login"
+                component={() => (
+                  <SignIn
 
-                  toggleAuthenticated={toggleAuthenticated}
-                  currentUser={currentUser}
-                  authenticated={authenticated} />
-              )}
-            />
-            <ProtectedRoute
-              authenticated={authenticated}
-              path="/profile"
-              component={() => (
-                <Profile
-                  {...props}
-                  toggleAuthenticated={toggleAuthenticated}
-                  currentUser={currentUser}
-                  authenticated={authenticated} />
-              )}
-            />
-            <ProtectedRoute
-              authenticated={authenticated}
-              path="/create"
-              component={() => (
-                <CreateGame
-                  {...props}
-                  toggleAuthenticated={toggleAuthenticated}
-                  currentUser={currentUser}
-                  authenticated={authenticated} />
-              )}
-            />
-            <ProtectedRoute
-              authenticated={authenticated}
-              path="/update"
-              component={() => (
-                <UpdateGame
-                  {...props}
-                  toggleAuthenticated={toggleAuthenticated}
-                  currentUser={currentUser}
-                  authenticated={authenticated} />
-              )}
-            />
-            <Route
-              authenticated={authenticated}
-              path="/play/:game_id"
-              component={() => (
-                <GamePage
-                  {...props}
-                  toggleAuthenticated={toggleAuthenticated}
-                  currentUser={currentUser}
-                  authenticated={authenticated} />
-              )}
-            />
-          </Switch>
-        )}
-    </div>
+                    toggleAuthenticated={toggleAuthenticated}
+                    currentUser={currentUser}
+                    authenticated={authenticated} />
+                )}
+              />
+              <ProtectedRoute
+                authenticated={authenticated}
+                path="/profile"
+                component={() => (
+                  <Profile
+                    {...props}
+                    toggleAuthenticated={toggleAuthenticated}
+                    currentUser={currentUser}
+                    authenticated={authenticated} />
+                )}
+              />
+              <ProtectedRoute
+                authenticated={authenticated}
+                path="/create"
+                component={() => (
+                  <CreateGame
+                    {...props}
+                    toggleAuthenticated={toggleAuthenticated}
+                    currentUser={currentUser}
+                    authenticated={authenticated} />
+                )}
+              />
+              <ProtectedRoute
+                authenticated={authenticated}
+                path="/update/:game_id"
+                component={() => (
+                  <UpdateGame
+                    {...props}
+                    toggleAuthenticated={toggleAuthenticated}
+                    currentUser={currentUser}
+                    authenticated={authenticated} />
+                )}
+              />
+              <Route
+                authenticated={authenticated}
+                path="/play/:game_id"
+                component={() => (
+                  <GamePage
+                    {...props}
+                    toggleAuthenticated={toggleAuthenticated}
+                    currentUser={currentUser}
+                    authenticated={authenticated} />
+                )}
+              />
+            </Switch>
+          )}
+      </div>
+    </ThemeProvider>
   )
 }
 

@@ -37,18 +37,24 @@ const Profile = (props) => {
                 authenticated={props.authenticated}
                 currentUser={props.currentUser}
             />
-            <Grid container justify="center" style={{ textAlign: "center" }, { marginTop: "100px" }}>
-                <Grid item>
-                    <Button onClick={() => { props.history.push(`/create`) }} endIcon={<Icon>add</Icon>}>New Game</Button>
+            <Grid container justify="center" style={{ textAlign: "center", marginTop: "100px" }}>
+                <Grid container justify='center'>
+                    <Button color='secondary' variant="contained" onClick={() => { props.history.push(`/create`) }} endIcon={<Icon>add</Icon>}>New Game</Button>
                 </Grid>
-                <Grid item>
+                <Grid container justify='center'>
                     <h1>My Games</h1>
                     {games.length ? (
                         games.map(game => (
-                            <Grid container>
-                                <p onClick={()=> {props.history.push(`/play/${game._id}`)}} key={game.title}>{game.title}</p>
-                                <Button onClick={()=> {deleteGame(game._id)}}>Delete</Button>
-                            </Grid>    
+                            <Grid container key={game.title} justify='center'>
+                                <Grid container justify='center'>
+                                    <h2>{game.title}</h2>
+                                </Grid>
+                                <Grid container justify='center'>
+                                    <Button color='secondary' variant="contained" style={{ maxHeight: '35px', margin: '5px' }} onClick={() => { props.history.push(`/play/${game._id}`) }}>Play</Button>
+                                    <Button color='secondary' variant="contained" style={{ maxHeight: '35px', margin: '5px' }} onClick={() => { deleteGame(game._id) }}>Delete</Button>
+                                    <Button color='secondary' variant="contained" style={{ maxHeight: '35px', margin: '5px' }} onClick={() => { props.history.push(`/update/${game._id}`) }}>Update</Button>
+                                </Grid>
+                            </Grid>
                         ))
                     ) : null}
                 </Grid>

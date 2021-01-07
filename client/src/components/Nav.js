@@ -17,7 +17,7 @@ const Nav = (props) => {
                     onClick={() => props.history.push('/')}
                     edge="start"
                     aria-label="menu"
-                    style={{ color: 'white' }}
+                    color='inherit'
                 >
                     <Icon >public</Icon>
                 </IconButton>
@@ -27,13 +27,13 @@ const Nav = (props) => {
                 <Typography variant="h6">
                     Hello, {props.currentUser.name}
                 </Typography>
-                <Button onClick={() => props.history.push('/profile')}>
+                <Button color='inherit' onClick={() => props.history.push('/profile')}>
                     Profile
                 </Button>
                 <Button
                     href="/"
                     onClick={() => localStorage.clear()}
-                    style={{ color: 'white' }}
+                    color='inherit'
                 >
                     Logout
                 </Button>
@@ -46,7 +46,7 @@ const Nav = (props) => {
                         onClick={() => props.history.push('/')}
                         edge="start"
                         aria-label="menu"
-                        style={{ color: 'white' }}
+                        color='inherit'
                     >
                         <Icon >public</Icon>
                     </IconButton>

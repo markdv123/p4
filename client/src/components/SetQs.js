@@ -103,7 +103,7 @@ const SetQs = (props) => {
             <Grid container justify="center" alignItems="center">
             <Button
                variant="contained"
-               color="primary"
+               color="secondary"
                endIcon={<Icon>add</Icon>}
                onClick={handleSubmit}
                style={{ margin: '5px' }}

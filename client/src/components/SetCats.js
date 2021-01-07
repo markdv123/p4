@@ -11,7 +11,7 @@ const SetCats = (props) => {
         try {
             setCats([...cats, name])
             console.log(cats)
-            const newCat = await __CreateCategory({name: name}, props.gameId)
+            await __CreateCategory({name: name}, props.gameId)
             setName('')
         } catch (error) {
             throw error
@@ -34,7 +34,7 @@ const SetCats = (props) => {
                     />
                     <Button
                         variant="contained"
-                        color="primary"
+                        color="secondary"
                         endIcon={<Icon>add</Icon>}
                         onClick={handleSubmit}
                         style={{ margin: '5px' }}

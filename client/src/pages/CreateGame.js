@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Nav from '../components/Nav'
 import {
     Grid,
@@ -58,6 +58,9 @@ const CreatGame = (props) => {
             break
         case 2:
             content = <SetQs {...props} gameId={gameId}/>
+            break
+        default:
+            content = 'no active step'
     }
     return (
         <div>
@@ -66,7 +69,7 @@ const CreatGame = (props) => {
                 authenticated={props.authenticated}
                 currentUser={props.currentUser}
             />
-            <div style={{ width: "100%" }, {marginTop: '100px'}}>
+            <div style={{ width: "100%", marginTop: '100px'}}>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (
                         <Step key={label}>
@@ -78,7 +81,7 @@ const CreatGame = (props) => {
                     {activeStep === steps.length ? (
                         <div>
                             <Typography >All steps completed</Typography>
-                            <Button onClick={handleReset}>Reset</Button>
+                            <Button color='secondary' onClick={handleReset}>Reset</Button>
                         </div>
                     ) : (
                             <div>
@@ -90,10 +93,11 @@ const CreatGame = (props) => {
                                     <Button
                                         disabled={activeStep === 0}
                                         onClick={handleBack}
+                                        color='secondary'
                                     >
                                         Back
                                     </Button>
-                                    <Button variant="contained" color="primary" onClick={handleNext}>
+                                    <Button variant="contained" color="secondary" onClick={handleNext}>
                                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                                     </Button>
                                 </div>
