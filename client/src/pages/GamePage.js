@@ -13,6 +13,7 @@ import {
     DialogTitle,
     Button
 } from '@material-ui/core'
+import ScaleText from "react-scale-text"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />
@@ -70,13 +71,15 @@ const GamePage = (props) => {
                     game.categories.map((cat, i) => (
                         <div style={{ display: 'flex', flexDirection: "column", fontSize: '60px' }} key={i}>
                             <div style={{ display: 'flex', flexDirection: "column", margin: "10px", maxWidth: '200px' }} key={i}>
-                                <div key={i} style={{ marginBottom: "10px" }}>
-                                    <Paper style={{ width: "150px", color: 'white' }}>
-                                        {cat.name}
+                                <div key={i}>
+                                    <Paper style={{ width: "150px", height: '70px', color: 'white', margin: "10px" }}>
+                                        <ScaleText>
+                                            <p>{cat.name}</p>
+                                        </ScaleText>
                                     </Paper>
                                 </div>
                                 {cat.questions.map((q, i) => (
-                                    <div key={i} style={{ margin: "5px" }}>
+                                    <div key={i} style={{ margin: "10px" }}>
                                         <Paper style={{ width: '150px', color: 'white' }} onClick={() => handleQ(q)}>
                                             {q.points}
                                         </Paper>
@@ -99,7 +102,7 @@ const GamePage = (props) => {
                     <div>
                         <DialogTitle id="alert-dialog-slide-title">{`For ${question.points} Points`}</DialogTitle>
                         <DialogContent>
-                            <DialogContentText id="alert-dialog-slide-description">
+                            <DialogContentText id="alert-dialog-slide-description" style={{color: 'white'}}>
                                 {question.question}
                             </DialogContentText>
                         </DialogContent>
