@@ -20,7 +20,7 @@ function getSteps() {
 function getStepContent(stepIndex) {
     switch (stepIndex) {
         case 0:
-            return 'Title your game and give it a description! Decide how many categories and questions you will need.'
+            return 'Title your game and give it a description! Click Confirm, then Next.'
         case 1:
             return 'Name your Categories!'
         case 2:
@@ -33,49 +33,26 @@ function getStepContent(stepIndex) {
 const CreatGame = (props) => {
     const [activeStep, setActiveStep] = React.useState(0)
     const steps = getSteps()
-    const [catNum, setCatNum] = useState(0)
-    const [qNum, setQNum] = useState(0)
     const [gameId, setGameId] = useState('')
     const [catId, setCatId] = useState('')
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }
+    const handleNext = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    const handleBack = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
+    const handleReset = () => setActiveStep(0)
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    }
-
-    const handleReset = () => {
-        setActiveStep(0)
-    }
-
-    const categoryNum = (num) => {
-        setCatNum(num)
-    }
-
-    const questionNum = (num) => {
-        setQNum(num)
-    }
-
-    const gId = (id) => {
-        setGameId(id)
-    }
-
-    const cId = (id) => {
-        setCatId(id)
-    }
+    const gId = (id) => setGameId(id)
+    const cId = (id) => setCatId(id)
 
     let content = ''
     switch (activeStep) {
         case 0:
-            content = <SetGame {...props} categoryNum={categoryNum} questionNum={questionNum} gId={gId}/>
+            content = <SetGame {...props} gId={gId}/>
             break
         case 1:
-            content = <SetCats {...props} catNum={catNum} gameId={gameId} cId={cId}/>
+            content = <SetCats {...props} gameId={gameId} cId={cId}/>
             break
         case 2:
-            content = <SetQs {...props} qNum={qNum} catId={catId}/>
+            content = <SetQs {...props} catId={catId}/>
     }
     return (
         <div>
@@ -101,7 +78,7 @@ const CreatGame = (props) => {
                     ) : (
                             <div>
                                 <Typography>{getStepContent(activeStep)}</Typography>
-                                <Grid container>
+                                <Grid container justify="center">
                                     {content}
                                 </Grid>
                                 <div>
