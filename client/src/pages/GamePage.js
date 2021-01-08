@@ -38,7 +38,7 @@ const GamePage = (props) => {
     useEffect(() => {
         getGame()
     }, [props.match.params.game_id])
-    console.log(game)
+    
     const handleQ = (question) => {
         setQuestion(question)
         setOpen(true)
