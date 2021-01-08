@@ -43,7 +43,7 @@ const SetQs = (props) => {
 
     return (
         <div>
-            <Grid container justify="center">
+            <Grid container justify="center" style={{margin: '5px'}}>
                 <FormControl>
                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
                     <Select
@@ -58,7 +58,7 @@ const SetQs = (props) => {
                     </Select>
                 </FormControl>
             </Grid>
-            <Grid container justify="center" alignItems="center">
+            <Grid container justify="center" alignItems="center" style={{margin: '5px'}}>
                 <FormControl
                     noValidate
                     autoComplete="off"
@@ -72,7 +72,7 @@ const SetQs = (props) => {
                     />
                 </FormControl>
             </Grid>
-            <Grid container justify="center" alignItems="center">
+            <Grid container justify="center" alignItems="center" style={{margin: '5px'}}>
                 <FormControl
                     noValidate
                     autoComplete="off"
@@ -86,7 +86,7 @@ const SetQs = (props) => {
                     />
                 </FormControl>
             </Grid>
-            <Grid container justify="center" alignItems="center">
+            <Grid container justify="center" alignItems="center" style={{margin: '5px'}}>
                 <FormControl
                     noValidate
                     autoComplete="off"
@@ -100,7 +100,7 @@ const SetQs = (props) => {
                     />
                 </FormControl>
             </Grid>
-            <Grid container justify="center" alignItems="center">
+            <Grid container justify="center" alignItems="center" style={{margin: '5px'}}>
             <Button
                variant="contained"
                color="secondary"
@@ -111,7 +111,7 @@ const SetQs = (props) => {
                Add
             </Button>
             </Grid>
-            <Grid container justify="center">
+            <Grid container justify="center" style={{margin: '5px'}}>
                 <div style={{flexDirection: 'column'}}>
                     <h4>Questions Added:</h4>
                     {qs.map((q, i) => (

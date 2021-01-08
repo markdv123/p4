@@ -31,6 +31,7 @@ const SetCats = (props) => {
                         name="name"
                         value={name}
                         onChange={handleName}
+                        style={{margin: '5px'}}
                     />
                     <Button
                         variant="contained"

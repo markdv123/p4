@@ -84,7 +84,7 @@ const CreatGame = (props) => {
                             <Button color='secondary' onClick={handleReset}>Reset</Button>
                         </div>
                     ) : (
-                            <div>
+                            <div style={{margin: '10px'}}>
                                 <Typography>{getStepContent(activeStep)}</Typography>
                                 <Grid container justify="center">
                                     {content}

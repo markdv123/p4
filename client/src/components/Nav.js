@@ -19,12 +19,12 @@ const Nav = (props) => {
                     aria-label="menu"
                     color='inherit'
                 >
-                    <Icon >public</Icon>
+                    <Icon >home</Icon>
                 </IconButton>
                 <Typography variant="h6">
                     Jeopardy Builder
                 </Typography>
-                <Typography variant="h6">
+                <Typography variant="h6" style={{position: 'relative', margin: '0 auto'}}>
                     Hello, {props.currentUser.name}
                 </Typography>
                 <Button color='inherit' onClick={() => props.history.push('/profile')}>
@@ -48,12 +48,12 @@ const Nav = (props) => {
                         aria-label="menu"
                         color='inherit'
                     >
-                        <Icon >public</Icon>
+                        <Icon >home</Icon>
                     </IconButton>
                     <Typography variant="h6">
                         Jeopardy Builder
                     </Typography>
-                    <Button color="inherit" href="/login">
+                    <Button style={{marginLeft: '650px'}} color="inherit" href="/login">
                         Sign In
                     </Button>
                     <Button color="inherit" href="/register">

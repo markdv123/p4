@@ -412,6 +412,8 @@ const UpdateGame = (props) => {
                 </div>
             )
             break
+        default:
+            content = <p>unknown dialog mode</p>
     }
 
     return (
