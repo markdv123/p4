@@ -9,6 +9,7 @@ import Profile from './pages/Profile'
 import CreateGame from './pages/CreateGame'
 import GamePage from './pages/GamePage'
 import UpdateGame from './pages/UpdateGame'
+import Play from './pages/Play'
 import { __CheckSession } from './services/UserServices'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './styles/Theme'
@@ -119,6 +120,17 @@ function App(props) {
                 path="/play/:game_id"
                 component={() => (
                   <GamePage
+                    {...props}
+                    toggleAuthenticated={toggleAuthenticated}
+                    currentUser={currentUser}
+                    authenticated={authenticated} />
+                )}
+              />
+              <Route
+                authenticated={authenticated}
+                path="/play"
+                component={() => (
+                  <Play
                     {...props}
                     toggleAuthenticated={toggleAuthenticated}
                     currentUser={currentUser}
