@@ -210,10 +210,10 @@ const UpdateGame = (props) => {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="white">
+                        <Button onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button onClick={submitTitle} color="white">
+                        <Button onClick={submitTitle}>
                             Submit
                         </Button>
                     </DialogActions>
@@ -238,10 +238,10 @@ const UpdateGame = (props) => {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="white">
+                        <Button onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button onClick={submitDesc} color="white">
+                        <Button onClick={submitDesc}>
                             Submit
                         </Button>
                     </DialogActions>
@@ -266,13 +266,13 @@ const UpdateGame = (props) => {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={deleteCat} color="white">
+                        <Button onClick={deleteCat}>
                             Delete Category
                         </Button>
-                        <Button onClick={handleClose} color="white">
+                        <Button onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button onClick={submitCat} color="white">
+                        <Button onClick={submitCat}>
                             Submit
                         </Button>
                     </DialogActions>
@@ -315,13 +315,13 @@ const UpdateGame = (props) => {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={deleteQ} color="white">
+                        <Button onClick={deleteQ}>
                             Delete Question
                         </Button>
-                        <Button onClick={handleClose} color="white">
+                        <Button onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button onClick={submitQ} color="white">
+                        <Button onClick={submitQ}>
                             Submit
                         </Button>
                     </DialogActions>
@@ -346,10 +346,10 @@ const UpdateGame = (props) => {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="white">
+                        <Button onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button onClick={submitNewCat} color="white">
+                        <Button onClick={submitNewCat}>
                             Submit
                         </Button>
                     </DialogActions>
@@ -402,10 +402,10 @@ const UpdateGame = (props) => {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="white">
+                        <Button onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button onClick={submitNewQ} color="white">
+                        <Button onClick={submitNewQ}>
                             Submit
                         </Button>
                     </DialogActions>

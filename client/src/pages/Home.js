@@ -52,7 +52,7 @@ const Home = (props) => {
                 currentUser={props.currentUser}
             />
             <Grid container justify="center" style={{ paddingTop: "90px", textAlign: "center", width: '500px', margin: "0 auto" }}>
-                <h1>Welcome to Jeaopardy Builder</h1>
+                <h1>Welcome to Jeopardy Builder</h1>
                 <p>On this site, you can create and play your own jeopardy games with ease!</p>
                 <Stepper activeStep={activeStep} orientation="vertical" style={{ color: 'white' }}>
                     {steps.map((label, index) => (

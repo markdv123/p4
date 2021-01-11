@@ -24,9 +24,12 @@ const Nav = (props) => {
                 <Typography variant="h6">
                     Jeopardy Builder
                 </Typography>
-                <Typography variant="h6" style={{position: 'relative', margin: '0 auto'}}>
+                <Typography variant="h6" style={{ position: 'relative', margin: '0 auto' }}>
                     Hello, {props.currentUser.name}
                 </Typography>
+                <Button color='inherit' href='/play'>
+                    Play
+                </Button>
                 <Button color='inherit' onClick={() => props.history.push('/profile')}>
                     Profile
                 </Button>
@@ -53,7 +56,11 @@ const Nav = (props) => {
                     <Typography variant="h6">
                         Jeopardy Builder
                     </Typography>
-                    <Button style={{marginLeft: '650px'}} color="inherit" href="/login">
+                    <Typography variant="h6" style={{ position: 'relative', margin: '0 auto' }} />
+                    <Button color='inherit' href='/play'>
+                        Play
+                    </Button>
+                    <Button color="inherit" href="/login">
                         Sign In
                     </Button>
                     <Button color="inherit" href="/register">

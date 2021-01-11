@@ -40,6 +40,7 @@ const Profile = (props) => {
             <Grid container justify="center" style={{ textAlign: "center", marginTop: "100px" }}>
                 <Grid container justify='center'>
                     <Button color='secondary' variant="contained" onClick={() => { props.history.push(`/create`) }} endIcon={<Icon>add</Icon>}>New Game</Button>
+                    <Button color='secondary' variant="contained" onClick={() => { props.history.push(`/play`) }} endIcon={<Icon>play_arrow</Icon>} style={{marginLeft: '10px'}}>Play Random Game</Button>
                 </Grid>
                 <Grid container justify='center'>
                     <h1>My Games</h1>

@@ -20,6 +20,7 @@ import {
     MenuItem
 } from '@material-ui/core'
 import ScaleText from "react-scale-text"
+import PlayQuestions from '../components/PlayQuestions'
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
@@ -45,6 +46,7 @@ const Play = (props) => {
     const [open, setOpen] = useState(false)
     const [question, setQuestion] = useState({})
     const [currentPoints, setCurrentPoints] = useState(0)
+    const [start, setStart] = useState(false)
 
     const getCats = async () => {
         try {
@@ -65,7 +67,7 @@ const Play = (props) => {
                     name: cat.name,
                     questions: res.data.results
                 }
-                await setGameCats(arr)
+                setGameCats(arr)
             } catch (error) {
                 throw error
             }
@@ -78,6 +80,7 @@ const Play = (props) => {
             console.log(cats)
         } else if (mode === 2) {
             initGame()
+            console.log(cats)
         }
     }, [props, mode])
 
@@ -104,7 +107,7 @@ const Play = (props) => {
         setNumQ(target.value)
     }
 
-    let content = ''
+    let content = 'v'
     switch (mode) {
         case 1:
             content = (
@@ -160,6 +163,7 @@ const Play = (props) => {
             content = (
                 <div style={{ marginTop: '90px' }}>
                     <Grid container justify="center">
+                        {start === false ? (<Button onClick={()=> {setStart(true)}}>Start Game</Button>) : null}
                         {gameCats.map((cat, i) => (
                                 <div style={{ display: 'flex', flexDirection: "column", fontSize: '60px' }} key={i}>
                                     <div style={{ display: 'flex', flexDirection: "column", margin: "10px", maxWidth: '200px' }} key={i}>
@@ -170,13 +174,7 @@ const Play = (props) => {
                                                 </ScaleText>
                                             </Paper>
                                         </div>
-                                        {cat.questions ? cat.questions.map((q, i) => (
-                                            <div key={i} style={{ margin: "10px" }}>
-                                                <Paper style={{ width: '150px', color: 'white', padding: '5px' }} onClick={() => handleQ(q, i)}>
-                                                    {(i + 1) * 100}
-                                                </Paper>
-                                            </div>
-                                        )) : null}
+                                        {start === true ? <PlayQuestions q={cat.questions} handleQ={handleQ}/> : null}
                                     </ div>
                                 </ div>
                             ))}
@@ -194,7 +192,7 @@ const Play = (props) => {
                                 <DialogTitle id="alert-dialog-slide-title">{`For ${currentPoints} Points`}</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-slide-description" style={{ color: 'white' }}>
-                                        {question.question.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'')}
+                                        {question.question.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"')}
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
@@ -212,9 +210,9 @@ const Play = (props) => {
                                 <DialogTitle id="alert-dialog-slide-title">{`For ${question.points} Points`}</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-slide-description" style={{ color: 'white' }}>
-                                        {question.question.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'')}
+                                        {question.question.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"')}
                                         <br />
-                                        {question.correct_answer.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'')}
+                                        {question.correct_answer.replace(/&quot;/g, '\"').replace(/&#039;/g, '\'').replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"')}
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
